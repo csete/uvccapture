@@ -37,33 +37,32 @@
 #define V4L2_CID_PANTILT_RESET		(V4L2_CID_PRIVATE_BASE+8)
 
 struct vdIn {
-  int fd;
-  char *videodevice;
-  char *status;
-  char *pictName;
-  struct v4l2_capability cap;
-  struct v4l2_format fmt;
-  struct v4l2_buffer buf;
-  struct v4l2_requestbuffers rb;
-  void *mem[NB_BUFFER];
-  unsigned char *tmpbuffer;
-  unsigned char *framebuffer;
-  int isstreaming;
-  int grabmethod;
-  int width;
-  int height;
-  int formatIn;
-  int formatOut;
-  int framesizeIn;
-  int signalquit;
-  int toggleAvi;
-  int getPict;
+    int fd;
+    char *videodevice;
+    char *status;
+    char *pictName;
+    struct v4l2_capability cap;
+    struct v4l2_format fmt;
+    struct v4l2_buffer buf;
+    struct v4l2_requestbuffers rb;
+    void *mem[NB_BUFFER];
+    unsigned char *tmpbuffer;
+    unsigned char *framebuffer;
+    int isstreaming;
+    int grabmethod;
+    int width;
+    int height;
+    int formatIn;
+    int formatOut;
+    int framesizeIn;
+    int signalquit;
+    int toggleAvi;
+    int getPict;
 
 };
 
-int
-  init_videoIn (struct vdIn *vd, char *device, int width, int height,
-		int format, int grabmethod);
+int init_videoIn (struct vdIn *vd, char *device, int width, int height,
+                  int format, int grabmethod);
 int uvcGrab (struct vdIn *vd);
 int close_v4l2 (struct vdIn *vd);
 
