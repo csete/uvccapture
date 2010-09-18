@@ -118,6 +118,8 @@ compress_yuyv_to_jpeg (struct vdIn *vd, FILE * file, int quality)
   unsigned char *line_buffer, *yuyv;
   int z;
 
+  printf (stderr, "Compressing YUYV frame to JPEG image.\n");
+
   line_buffer = calloc (vd->width * 3, 1);
   yuyv = vd->framebuffer;
 
@@ -283,7 +285,9 @@ main (int argc, char *argv[])
     --argc;
   }
 
-  if ((width > 960) || (height > 720) || (quality != 95))
+
+  /* user requrested quality activates YUYV mode */
+  if (quality != 95)
     format = V4L2_PIX_FMT_YUYV;
 
   if (post_capture_command[0])
