@@ -1,7 +1,7 @@
 CC=gcc
 CPP=g++
 APP_BINARY=uvccapture
-VERSION = 0.4
+VERSION = 0.5-ac1
 PREFIX=/usr/local/bin
 
 WARNINGS = -Wall
