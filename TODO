@@ -1,2 +1,3 @@
+* Check whether camera supports jpeg at requested resolution.
 * Add support for manual focus
 * Add support for PAN and TILT
