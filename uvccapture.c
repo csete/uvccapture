@@ -116,7 +116,7 @@ int compress_yuyv_to_jpeg (struct vdIn *vd, FILE * file, int quality)
     unsigned char *line_buffer, *yuyv;
     int z;
 
-    printf (stderr, "Compressing YUYV frame to JPEG image.\n");
+    fprintf (stderr, "Compressing YUYV frame to JPEG image.\n");
 
     line_buffer = calloc (vd->width * 3, 1);
     yuyv = vd->framebuffer;
