@@ -74,6 +74,8 @@ void usage (void)
     exit (8);
 }
 
+
+/* This is used to execute the postprocessing command. */
 int spawn (char *argv[], int wait, int verbose)
 {
     pid_t pid;
