@@ -53,9 +53,9 @@ void usage (void)
     fprintf (stderr, "-o<filename>\tOutput filename (default: snap.jpg). Use img%%05d.jpg for sequential files.\n");
     fprintf (stderr, "-d<device>\tV4L2 Device (default: /dev/video0)\n");
     fprintf (stderr,
-             "-x<width>\tImage Width (must be supported by device)(>960 activates YUYV capture)\n");
+             "-x<width>\tImage Width (must be supported by device)\n");
     fprintf (stderr,
-             "-y<height>\tImage Height (must be supported by device)(>720 activates YUYV capture)\n");
+             "-y<height>\tImage Height (must be supported by device)\n");
     fprintf (stderr,
              "-c<command>\tCommand to run after each image capture(executed as <command> <output_filename>)\n");
     fprintf (stderr,
