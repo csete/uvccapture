@@ -191,7 +191,7 @@ int main (int argc, char *argv[])
     int width = 320;
     int height = 240;
     int brightness = 0, contrast = 0, saturation = 0, gain = 0;
-    int num = 1; /* number of images to capture */
+    int num = -1; /* number of images to capture */
     int verbose = 0;
     int delay = 0;
     int quality = 95;
