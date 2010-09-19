@@ -62,6 +62,8 @@ void usage (void)
     fprintf (stderr,
              "-t<integer>\tTake continuous shots with <integer> seconds between them (0 for single shot)\n");
     fprintf (stderr,
+             "-n<integer>\tTake <integer> shots then exit. Only applicable when delay is non-zero\n");
+    fprintf (stderr,
              "-q<percentage>\tJPEG Quality Compression Level (activates YUYV capture)\n");
     fprintf (stderr, "-r\t\tUse read instead of mmap for image capture\n");
     fprintf (stderr,
@@ -189,6 +191,7 @@ int main (int argc, char *argv[])
     int width = 320;
     int height = 240;
     int brightness = 0, contrast = 0, saturation = 0, gain = 0;
+    int num = 1; /* number of images to capture */
     int verbose = 0;
     int delay = 0;
     int quality = 95;
@@ -244,6 +247,10 @@ int main (int argc, char *argv[])
 
         case 'm':
             format = V4L2_PIX_FMT_YUYV;
+            break;
+
+        case 'n':
+            num = atoi (&argv[1][2]);
             break;
 
         case 't':
@@ -410,7 +417,7 @@ int main (int argc, char *argv[])
 
             ref_time = time (NULL);
         }
-        if (delay == 0)
+        if ((delay == 0) || (num == i))
             break;
     }
     close_v4l2 (videoIn);

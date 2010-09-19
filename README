@@ -2,8 +2,9 @@ Uvccapture is a simple application for capturing images from an USB webcam on
 Linux. This repository contains my fork and hacks on uvccapture.
 
 My modificantions include:
-- Sequential numbering of files (img001.jpg, img002.jpg, ...)
-- Allow capturing JPG format any resolution supported by the camera. The
+- Sequential numbering of files (img001.jpg, img002.jpg, ...).
+- Command line option for number of images to capture.
+- Allow capturing JPG format at any resolution supported by the camera. The
   original uvccapture switches to YUYV mode at resolution 960x720 and higher,
   while many cameras support MJPG at full resolution.
 - Allow capture rates higher that 1 frame per second.
