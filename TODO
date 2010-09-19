@@ -1,3 +1,4 @@
+* Command line option for number of snapshots, e.g. -n20
 * Better management and error checking on command line options
 * Check whether camera supports jpeg at requested resolution.
 * Add support for manual focus
