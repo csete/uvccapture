@@ -49,9 +49,9 @@ void usage (void)
     fprintf (stderr, "uvccapture version %s\n", version);
     fprintf (stderr, "Usage is: uvccapture [options]\n");
     fprintf (stderr, "Options:\n");
-    fprintf (stderr, "-v\t\tVerbose\n");
+    fprintf (stderr, "-v\t\tVerbose (add more v's to be more verbose)\n");
     fprintf (stderr, "-o<filename>\tOutput filename(default: snap.jpg)\n");
-    fprintf (stderr, "-d<device>\tV4L2 Device(default: /dev/video0)\n");
+    fprintf (stderr, "-d<device>\tV4L2 Device (default: /dev/video0)\n");
     fprintf (stderr,
              "-x<width>\tImage Width(must be supported by device)(>960 activates YUYV capture)\n");
     fprintf (stderr,
