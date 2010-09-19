@@ -50,12 +50,12 @@ void usage (void)
     fprintf (stderr, "Usage is: uvccapture [options]\n");
     fprintf (stderr, "Options:\n");
     fprintf (stderr, "-v\t\tVerbose (add more v's to be more verbose)\n");
-    fprintf (stderr, "-o<filename>\tOutput filename(default: snap.jpg)\n");
+    fprintf (stderr, "-o<filename>\tOutput filename (default: snap.jpg). Use img%%05d.jpg for sequential files.\n");
     fprintf (stderr, "-d<device>\tV4L2 Device (default: /dev/video0)\n");
     fprintf (stderr,
-             "-x<width>\tImage Width(must be supported by device)(>960 activates YUYV capture)\n");
+             "-x<width>\tImage Width (must be supported by device)(>960 activates YUYV capture)\n");
     fprintf (stderr,
-             "-y<height>\tImage Height(must be supported by device)(>720 activates YUYV capture)\n");
+             "-y<height>\tImage Height (must be supported by device)(>720 activates YUYV capture)\n");
     fprintf (stderr,
              "-c<command>\tCommand to run after each image capture(executed as <command> <output_filename>)\n");
     fprintf (stderr,
@@ -181,6 +181,7 @@ int main (int argc, char *argv[])
 {
     char *videodevice = "/dev/video0";
     char *outputfile = "snap.jpg";
+    char  thisfile[200]; /* used as filename buffer in multi-file seq. */
     char *post_capture_command[3];
     int format = V4L2_PIX_FMT_MJPEG;
     int grabmethod = 1;
@@ -191,6 +192,9 @@ int main (int argc, char *argv[])
     int delay = 0;
     int quality = 95;
     int post_capture_command_wait = 0;
+    int multifile = 0;   /* flag indicating that we save to a multi-file sequence */
+    int i = 0;
+
     time_t ref_time;
     struct vdIn *videoIn;
     FILE *file;
@@ -216,6 +220,9 @@ int main (int argc, char *argv[])
 
         case 'o':
             outputfile = &argv[1][2];
+            /* A % sign indicates format string for multi-file sequence */
+            if (strchr(outputfile, '%'))
+                multifile = 1;
             break;
 
         case 'd':
@@ -362,9 +369,19 @@ int main (int argc, char *argv[])
         }
 
         if ((difftime (time (NULL), ref_time) > delay) || delay == 0) {
-            if (verbose >= 1)
-                fprintf (stderr, "Saving image to: %s\n", outputfile);
-            file = fopen (outputfile, "wb");
+            if (multifile == 1) {
+                sprintf (thisfile, outputfile, i);
+                i++;
+                if (verbose >= 1)
+                    fprintf (stderr, "Saving image to: %s\n", thisfile);
+                file = fopen (thisfile, "wb");
+            }
+            else {
+                if (verbose >= 1)
+                    fprintf (stderr, "Saving image to: %s\n", outputfile);
+                file = fopen (outputfile, "wb");
+            }
+            
             if (file != NULL) {
                 switch (videoIn->formatIn) {
                 case V4L2_PIX_FMT_YUYV:
