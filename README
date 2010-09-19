@@ -3,12 +3,13 @@ Linux. This repository contains my fork and hacks on uvccapture.
 
 My modificantions include:
 - Sequential numbering of files (img001.jpg, img002.jpg, ...)
-- Allow capturing JPG form at any resolution supported by the camera. The
+- Allow capturing JPG format any resolution supported by the camera. The
   original uvccapture switches to YUYV mode at resolution 960x720 and higher,
   while many cameras support MJPG at full resolution.
 - Allow capture rates higher that 1 frame per second.
 
-The original contents of the README is included below.
+The contents of the original README are included below.
+The original code that I forked is avaialble under the v0.5 tag.
 
 -------------------------------------------------------------------------------
 uvccapture: USB UVC Video Class Snapshot Software
