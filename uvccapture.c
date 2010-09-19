@@ -3,8 +3,9 @@
 #             uvccapture: USB UVC Video Class Snapshot Software                #
 #This package work with the Logitech UVC based webcams with the mjpeg feature  #
 #.                                                                             #
-# 	Orginally Copyright (C) 2005 2006 Laurent Pinchart &&  Michel Xhaard   #
+# 	Orginally Copyright (C) 2005 2006 Laurent Pinchart &&  Michel Xhaard       #
 #       Modifications Copyright (C) 2006  Gabriel A. Devenyi                   #
+#                               (C) 2010  Alexandru Csete                      #
 #                                                                              #
 # This program is free software; you can redistribute it and/or modify         #
 # it under the terms of the GNU General Public License as published by         #
