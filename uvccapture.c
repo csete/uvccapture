@@ -60,6 +60,8 @@ void usage (void)
     fprintf (stderr,
              "-c<command>\tCommand to run after each image capture(executed as <command> <output_filename>)\n");
     fprintf (stderr,
+             "-j<integer>\tSkip <integer> frames before first capture\n");
+    fprintf (stderr,
              "-t<integer>\tTake continuous shots with <integer> seconds between them (0 for single shot)\n");
     fprintf (stderr,
              "-n<integer>\tTake <integer> shots then exit. Only applicable when delay is non-zero\n");
@@ -194,6 +196,7 @@ int main (int argc, char *argv[])
     int num = -1; /* number of images to capture */
     int verbose = 0;
     int delay = 0;
+    int skip = 0;
     int quality = 95;
     int post_capture_command_wait = 0;
     int multifile = 0;   /* flag indicating that we save to a multi-file sequence */
@@ -251,6 +254,10 @@ int main (int argc, char *argv[])
 
         case 'n':
             num = atoi (&argv[1][2]);
+            break;
+
+        case 'j':
+            skip = atoi (&argv[1][2]);
             break;
 
         case 't':
@@ -375,6 +382,8 @@ int main (int argc, char *argv[])
             free (videoIn);
             exit (1);
         }
+
+        if (skip > 0) { skip--; continue; }
 
         if ((difftime (time (NULL), ref_time) > delay) || delay == 0) {
             if (multifile == 1) {
